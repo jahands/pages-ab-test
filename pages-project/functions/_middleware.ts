@@ -4,7 +4,7 @@ export async function onRequest(context) {
     // because any other branch would be a preview and we don't want to recursively fetch to
     // to the preview version of the site.
     const shouldBTest =
-      Math.random() < 0.5 && context.CF_PAGES_BRANCH === "main";
+      Math.random() < 0.5 && context.env.CF_PAGES_BRANCH === "main";
     if (shouldBTest) {
       const url = new URL(context.request.url)
       url.hostname = 'beta.pages-ab-test.pages.dev'
